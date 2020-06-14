@@ -1,64 +1,94 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
- :root {
-    --primary: #44e9ff;
-    --secondary: #497980;
-    --tertiary: rgb(192, 246, 253);
-    --grey: #333;
-    font-size: 62.5%;
-}
-
-body {
-    background: #ededed;
-    color: var(--grey);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-header {
-    background: var(--secondary);
-    padding: 30px 25px;
-    border-bottom: 5px solid var(--primary);
-}
-
-.btn {
-    outline: none;
-    border: none;
-    display: inline-block;
-    padding: 10px 15px;
-    background: var(--primary);
-    font-size: 2.2rem;
-    border-radius: 12px;
-    position: relative;
-    top: -3px;
-    box-shadow: 0 3px var(--grey);
-}
-
-.btn:hover {
-    box-shadow: 0 2px var(--grey);
-    top: -2px;
-}
-
-.btn:active {
-    box-shadow: 0 0px var(--grey);
-    top: 0;
-}
-
-.h1 {
-    font-weight: bold;
-    font-size: 30px;
-    color: white;
-    margin: 0;
-    transition: transform .3s ease-in;
-    -webkit-transition: all .4s ease-in;
-    transition: all .4s ease-in;
-}
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        font-family: Gotham Rounded;
+    }
+    
+     :root {
+        --hue-neutral: 200;
+        --hue-correct: 145;
+        --hue-wrong: 0;
+    }
+    
+    body {
+        --hue: var(--hue-neutral);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(var(--hue), 100%, 20%);
+    }
+    
+    body.correct {
+        --hue: var(--hue-correct)
+    }
+    
+    body.wrong {
+        --hue: var(--hue-wrong)
+    }
+    
+    .h1 {
+        ;
+    }
+    
+    .container {
+        width: 800px;
+        height: 350px;
+        max-width: 100%;
+        background-color: white;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 0 10px 2px;
+        text-align-last: center;
+    }
+    
+    .btn-grid {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .btn {
+        --hue: var(--hue-neutral);
+        border: 1px solid hsl(var(--hue), 100%, 50%);
+        background-color: hsl(var(--hue), 100%, 40%);
+        border-radius: 10px;
+        padding: 5px 10px;
+        color: white;
+        outline: none;
+    }
+    
+    .btn:hover {
+        border-color: black;
+    }
+    
+    .btn.correct {
+        --hue: var(--hue-correct);
+        color: purple;
+    }
+    
+    .btn.wrong {
+        --hue: va(--hue-wrong);
+    }
+    
+    .start-btn,
+    .next-btn {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 10px 20px;
+    }
+    
+    .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .hide {
+        display: none;
+    }
