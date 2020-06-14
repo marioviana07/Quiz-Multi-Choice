@@ -9,10 +9,12 @@ let shuffledQuestions, currentQuestionIndex
 startbutton.addEventListener('click', start)
 
 function start() {
+    console.log(questionContainerElement)
     startbutton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
-        // questionContainerElement.classList.remove('hide')
+    questionContainerElement.classList.remove('hide')
+
     setNextQuestion()
 
 }
