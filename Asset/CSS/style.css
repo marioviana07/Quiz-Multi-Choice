@@ -31,10 +31,6 @@
         --hue: var(--hue-wrong)
     }
     
-    .h1 {
-        ;
-    }
-    
     .container {
         width: 800px;
         height: 350px;
