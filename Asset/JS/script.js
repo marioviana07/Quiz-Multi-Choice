@@ -1,3 +1,4 @@
+//Set all variables
 const startbutton = document.getElementById('start-btn')
 const nextbutton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
@@ -5,13 +6,13 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
 let shuffledQuestions, currentQuestionIndex
-
+    // Set the buttons start and next
 startbutton.addEventListener('click', start)
 nextbutton.addEventListener('click', () => {
-    currentQuestionIndex++
-    setNextQuestion()
-})
-
+        currentQuestionIndex++
+        setNextQuestion()
+    })
+    // setup ours controls
 function start() {
     startbutton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
@@ -42,15 +43,16 @@ function showQuestion(question) {
 
     })
 }
-
+// prepare our screen for the next question
 function resetState() {
+    clearStatusClass(document.body)
     nextbutton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
 }
 
-
+// Answer the questions
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -82,6 +84,8 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
+
+// Array of questions
 const questions = [{
         question: 'What is 10/2?',
         answers: [
