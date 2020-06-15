@@ -7,9 +7,12 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestionIndex
 
 startbutton.addEventListener('click', start)
+nextbutton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 function start() {
-    console.log(questionContainerElement)
     startbutton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
@@ -38,103 +41,99 @@ function showQuestion(question) {
         answerButtonsElement.appendChild(button)
 
     })
-
-
 }
 
 function resetState() {
     nextbutton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-
     }
-
-
 }
 
 
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+
+    })
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        nextbutton.classList.remove('hide')
+    } else {
+        startbutton.innerText = 'Restart'
+        startbutton.classList.remove('hide')
+    }
+}
 
 
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
 
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
 }
 
 const questions = [{
-    question: 'What is 10/2?',
-    answers: [
-        { text: '2', correct: false },
-        { text: '5', correct: true }
-    ]
-}]
+        question: 'What is 10/2?',
+        answers: [
+            { text: '2', correct: false },
+            { text: '5', correct: true },
+            { text: '10', correct: false },
+            { text: '1', correct: false }
+        ]
+    },
 
+    {
+        question: 'In What continent is Senegal?',
+        answers: [
+            { text: 'South America', correct: false },
+            { text: 'Europe', correct: false },
+            { text: 'Africa', correct: true },
+            { text: 'USA', correct: false }
+        ]
 
+    },
 
-// var button = document.querySelector("#start-quiz");
+    {
+        question: 'How much is 5+5?',
+        answers: [
+            { text: '5', correct: false },
+            { text: '2', correct: false },
+            { text: '0', correct: false },
+            { text: '10', correct: true }
+        ]
 
-//time
-//link high score
-//The array of questions for the quiz
-// function generatequiz() {
-//     var questions = [
+    },
 
-//         {
-//             q: "What is 2/10?",
-//             answer: {
-//                 a: '7',
-//                 b: '2',
-//                 C: '5'
-//             },
-//             correctAnswer: 'c'
+    {
+        question: 'What color is the moon?',
+        answers: [
+            { text: 'White', correct: true },
+            { text: 'Yellow', correct: false },
+            { text: 'Red', correct: false },
+            { text: 'Black', correct: false }
+        ]
 
-//         },
-//         {
-//             q: "In What continent is Senegal?",
-//             answer: {
-//                 a: 'South America',
-//                 b: 'Africa',
-//                 C: 'Europe'
-//             },
-//             correctAnswer: 'b'
+    },
 
-//         },
-//         {
-//             q: "How much is 5+5?",
-//             answer: {
-//                 a: '10',
-//                 b: '11',
-//                 C: '5'
-//             },
-//             correctAnswer: 'a'
+    {
+        question: 'How many hours does the day have?',
+        answers: [
+            { text: '12', correct: false },
+            { text: '18', correct: false },
+            { text: '24', correct: true },
+            { text: '21', correct: false }
+        ]
 
-//         },
-//         {
-//             q: "What color is the moon?",
-//             answer: {
-//                 a: 'Yellow',
-//                 b: 'White',
-//                 C: 'Red'
-//             },
-//             correctAnswer: 'b'
+    },
 
-
-//         },
-//         {
-//             q: "How many hours does the day have?",
-//             answer: {
-//                 a: '12 Hrs.',
-//                 b: '18 Hrs.',
-//                 C: '24 Hrs.'
-//             },
-//             correctAnswer: 'c'
-//         },
-
-
-//     ];
-
-
-//store the answers
-//verify the score
-//show the results
-//done and reset the quiz
+]
