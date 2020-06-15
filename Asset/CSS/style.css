@@ -88,3 +88,11 @@
     .hide {
         display: none;
     }
+    
+    #countdown {
+        height: 20px;
+        width: 60px;
+        font-size: 15px;
+        color: black;
+        margin-left: 600px;
+    }
