@@ -1,3 +1,6 @@
 # Quiz-Multi-Choice
+By Mario Viana
 
-<img >
+## Mock-up
+
+<img src = "/Asset/images/beginin.png" width = "200" >
